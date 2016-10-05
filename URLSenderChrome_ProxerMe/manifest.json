@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "URLSender Proxer.me",
+  "version": "1.0",
+  "description": "Exclusive Proxer.me plugin for the Kodi plugin URLReceiver",
+  "author": "MrKrabat",
+
+  "options_page": "options/options.html",
+  "icons": { 
+    "512": "icon.png"
+  },
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+
+  "permissions": [
+	"storage",
+    "http://proxer.me/watch/*"
+  ],
+
+  "background": {"scripts":["service.js"]},
+  "content_scripts": [
+    {
+      "matches": ["http://proxer.me/watch/*"],
+      "js": ["jquery-3.1.1.min.js", "proxer.js"]
+    },
+    {
+      "matches": ["http://stream.proxer.me/embed-*"],
+      "js": ["jquery-3.1.1.min.js", "proxer-stream.js"],
+	  "all_frames":true
+    }
+  ]
+}
