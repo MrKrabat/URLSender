@@ -82,6 +82,7 @@ Func _send()
 		MsgBox(48, "URLSender", "Failed to receive an answer from Kodi.", 0, $hGUI_Main)
 		Return -1
 	EndIf
+	$data = StringStripWS($data, 8)
 
 	; check result
 	If $data == "1" Then
@@ -91,6 +92,7 @@ Func _send()
 	Else
 		MsgBox(48, "URLSender", "Kodi was not able to play the URL.", 0, $hGUI_Main)
 	EndIf
+	; ConsoleWrite($data & @CRLF)
 
 	; cleanup
 	GUICtrlSetData($hURL, "")

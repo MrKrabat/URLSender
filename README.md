@@ -6,6 +6,7 @@ Required to have URL Receiver installed on Kodi.
 
 
 Website: https://dev.mrkrabat.de/urlreceiver/urlsender.php
+Browser Extensions: https://dev.mrkrabat.de/urlreceiver/browser.php
 
 Git Repo: https://github.com/MrKrabat/URLSender
 
