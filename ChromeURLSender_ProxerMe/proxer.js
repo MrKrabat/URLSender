@@ -52,6 +52,10 @@ function sendtokodi() {
 	chrome.storage.sync.get({
 		kodi_address: "192.168.0.10:1337",
 	}, function(items) {
+		// fix for proxer HTTPS
+		window.open("http://" + items.kodi_address + "/urlsend=" + wStream, '_blank');
+		
+		/*
 		$.get("http://" + items.kodi_address + "/urlsend=" + wStream, function( my_var ) {
 			if(my_var == "1") {
 				alert("Video playback started successfully.");
@@ -61,5 +65,6 @@ function sendtokodi() {
 				alert("Kodi was not able to play the URL.");
 			}
 		}, "html");
+		*/
 	});
 }
