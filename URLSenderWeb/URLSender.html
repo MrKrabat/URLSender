@@ -28,11 +28,11 @@
 			$(document).ready(function() {
 				$("button").click(function() {
 					$("#div1").load("http://" + $("#address").val() + "/urlsend=" + $("#url").val(), function(responseTxt, statusTxt, xhr) {
-						if(typeof responseTxt == "undefined" || responseTxt == "0") {
+						if(typeof responseTxt == "undefined" || responseTxt.charAt(0) == "0") {
 							$("#div1").text("Failed.");
-						} else if(responseTxt == "1") {
+						} else if(responseTxt.charAt(0) == "1") {
 							$("#div1").text("Successful.");
-						} else if(responseTxt == "2") {
+						} else if(responseTxt.charAt(0) == "2") {
 							$("#div1").text("Added to playlist.");
 						} else {
 							$("#div1").text("Error.");
