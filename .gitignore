@@ -53,6 +53,7 @@ Temporary Items
 *.exe
 *.jar
 *.class
+URLSenderC&C++/URLSenderLinux
 
 # Eclipse
 .classpath
