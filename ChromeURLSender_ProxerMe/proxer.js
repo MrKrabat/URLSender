@@ -40,7 +40,10 @@ function sendtokodi() {
 	// proxer stream handling
 	if(wStream.toLowerCase().indexOf("stream.proxer.me") >= 0) {
 		wStream = $("#kodihidden").html();
-	} 
+	} else if(wStream.toLowerCase().indexOf("crunchyroll.com") >= 0) {
+		// Crunchyroll stream handling
+		wStream = $(".wStream .external_player").attr("href");
+	}
 	
 	// failed
 	if(typeof wStream == "undefined") {
@@ -52,19 +55,6 @@ function sendtokodi() {
 	chrome.storage.sync.get({
 		kodi_address: "192.168.0.10:1337",
 	}, function(items) {
-		// fix for proxer HTTPS
 		window.open("http://" + items.kodi_address + "/urlsend=" + wStream, '_blank');
-		
-		/*
-		$.get("http://" + items.kodi_address + "/urlsend=" + wStream, function( my_var ) {
-			if(my_var == "1") {
-				alert("Video playback started successfully.");
-			} else if(my_var == "2") {
-				alert("Added the URL successfully to the playlist.");
-			} else {
-				alert("Kodi was not able to play the URL.");
-			}
-		}, "html");
-		*/
 	});
 }
