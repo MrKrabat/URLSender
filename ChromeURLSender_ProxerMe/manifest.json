@@ -23,11 +23,11 @@
   "content_scripts": [
     {
       "matches": ["*://proxer.me/watch/*"],
-      "js": ["jquery-3.2.1.slim.min.js", "proxer.js"]
+      "js": ["jquery-3.2.1.min.js", "proxer.js"]
     },
     {
       "matches": ["*://stream.proxer.me/embed-*"],
-      "js": ["jquery-3.2.1.slim.min.js", "proxer-stream.js"],
+      "js": ["jquery-3.2.1.min.js", "proxer-stream.js"],
 	  "all_frames":true
     }
   ]
