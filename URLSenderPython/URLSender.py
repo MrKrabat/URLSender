@@ -17,7 +17,7 @@
 #
 
 # Imports
-import sys, socket
+import socket
 import argparse
 
 
@@ -34,23 +34,23 @@ if __name__ == '__main__':
 		# connect to server
 		s = socket.socket()
 		s.connect((args.host, int(args.port)))
-		
+
 		# send data
 		s.sendall(args.url)
-		
+
 		# receive answer
 		data = s.recv(1024).rstrip()
-		
+
 		if "1" in data:
 			print "Video playback started successfully.\n"
 		elif "2" in data:
 			print "Added the URL successfully to the playlist.\n"
 		else:
 			print "Kodi was not able to play the URL.\n"
-	
+
 	except socket.error:
 		print "Connection to Kodi at '%s:%s' failed.\n" % (args.host, args.port)
-	
+
 	finally:
 		# cleanup
 		s.close()

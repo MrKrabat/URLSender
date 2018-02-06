@@ -16,45 +16,47 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Proxerstream Handling
-var isTop = true;
-chrome.runtime.onMessage.addListener(function(details) {
-	$("#kodihidden").text(details);
-});
-
-// get button area
-var buttonarea = $("table#wContainer tr.no_details").children("td").eq(1);
-
-// add button
-var $input = $('<a href="javascript:void(0);" id="watchonkodi" class="menu reminder" title="Watch on Kodi">Watch on Kodi</a><div style="width: 0px; height: 0px; visibility: hidden;" id="kodihidden"></span>').click(sendtokodi);
-buttonarea.children("br").remove();
-buttonarea.append($input);
-
 // handle click
 function sendtokodi() {
-	var wStream = $(".wStream iframe").attr("src");
-	if(typeof wStream == "undefined") {
-		var wStream = $(".wStream a").attr("href");
-	}
-	
-	// proxer stream handling
-	if(wStream.toLowerCase().indexOf("stream.proxer.me") >= 0) {
-		wStream = $("#kodihidden").html();
-	} else if(wStream.toLowerCase().indexOf("crunchyroll.com") >= 0) {
-		// Crunchyroll stream handling
-		wStream = $(".wStream .external_player").attr("href");
-	}
-	
-	// failed
-	if(typeof wStream == "undefined") {
-		alert("Error: " + wStream);
-		return;
-	}
-	
-	// send to kodi
-	chrome.storage.sync.get({
-		kodi_address: "192.168.0.10:1337",
-	}, function(items) {
-		window.open("http://" + items.kodi_address + "/urlsend=" + wStream, '_blank');
-	});
+    var wStream = $(".wStream iframe").attr("src");
+    if(typeof wStream == "undefined") {
+        wStream = $(".wStream a").attr("href");
+    }
+
+    // proxer stream handling
+    if(wStream.toLowerCase().indexOf("stream.proxer.me") >= 0) {
+        wStream = $("#kodihidden").html();
+    } else if(wStream.toLowerCase().indexOf("crunchyroll.com") >= 0) {
+        // Crunchyroll stream handling
+        wStream = $(".wStream .external_player").attr("href");
+    }
+
+    // failed
+    if(typeof wStream == "undefined") {
+        alert("Error: " + wStream);
+        return;
+    }
+
+    // send to kodi
+    chrome.storage.sync.get({
+        kodi_address: "192.168.0.10:1337",
+    }, function(items) {
+        window.open("http://" + items.kodi_address + "/urlsend=" + wStream, "_blank");
+    });
 }
+
+$(document).ready(function() {
+    // Proxerstream Handling
+    var isTop = true;
+    chrome.runtime.onMessage.addListener(function(details) {
+        $("#kodihidden").text(details);
+    });
+
+    // get button area
+    var buttonarea = $("table#wContainer tr.no_details").children("td").eq(1);
+
+    // add button
+    var $input = $('<a href="javascript:void(0);" id="watchonkodi" class="menu reminder" title="Watch on Kodi">Watch on Kodi</a><div style="width: 0px; height: 0px; visibility: hidden;" id="kodihidden"></span>').click(sendtokodi);
+    buttonarea.children("br").remove();
+    buttonarea.append($input);
+});
