@@ -20,7 +20,7 @@
 function saveOptions() {
     var address = document.getElementById("address").value;
     chrome.storage.sync.set({
-        kodi_address: address,
+        kodiAddress: address,
     }, function() {
         // Update status to let user know options were saved.
         var status = document.getElementById("status");
@@ -36,9 +36,9 @@ function saveOptions() {
 function restoreOptions() {
     // Use default value color = 'red' and likesColor = true.
     chrome.storage.sync.get({
-        kodi_address: "192.168.0.10:1337",
+        kodiAddress: "192.168.0.10:1337",
     }, function(items) {
-        document.getElementById("address").value = items.kodi_address;
+        document.getElementById("address").value = items.kodiAddress;
     });
 }
 

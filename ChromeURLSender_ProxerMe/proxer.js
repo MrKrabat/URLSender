@@ -39,9 +39,9 @@ function sendtokodi() {
 
     // send to kodi
     chrome.storage.sync.get({
-        kodi_address: "192.168.0.10:1337",
+        kodiAddress: "192.168.0.10:1337",
     }, function(items) {
-        window.open("http://" + items.kodi_address + "/urlsend=" + wStream, "_blank");
+        window.open("http://" + items.kodiAddress + "/urlsend=" + wStream, "_blank");
     });
 }
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
     var buttonarea = $("table#wContainer tr.no_details").children("td").eq(1);
 
     // add button
-    var $input = $('<a href="javascript:void(0);" id="watchonkodi" class="menu reminder" title="Watch on Kodi">Watch on Kodi</a><div style="width: 0px; height: 0px; visibility: hidden;" id="kodihidden"></span>').click(sendtokodi);
+    var $input = $("<a href=\"javascript:void(0);\" id=\"watchonkodi\" class=\"menu reminder\" title=\"Watch on Kodi\">Watch on Kodi</a><div style=\"width: 0px; height: 0px; visibility: hidden;\" id=\"kodihidden\"></span>").click(sendtokodi);
     buttonarea.children("br").remove();
     buttonarea.append($input);
 });
